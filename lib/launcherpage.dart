@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:aplikasi_yukbli/constant.dart';
+import 'package:aplikasi_yukbli/users/landingpage.dart' as users;
 
 class LauncherPage extends StatefulWidget {
   @override
@@ -8,11 +11,27 @@ class LauncherPage extends StatefulWidget {
 
 class _LauncherPageState extends State<LauncherPage> {
   @override
+  void initState() {
+    super.initState();
+    startLaunching();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  startLaunching() async {
+    var duration = const Duration(seconds: 5);
+    return new Timer(duration, () {
+      Navigator.of(context).pushReplacement(
+          new MaterialPageRoute(builder: (_) => new users.LandingPage()));
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('YukBli'),
-      ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 20),
         height: MediaQuery.of(context).size.height,
@@ -38,8 +57,8 @@ class _LauncherPageState extends State<LauncherPage> {
             new Center(
               child: new Image.asset(
                 "assets/logo.png",
-                height: 90.0,
-                width: 270.0,
+                height: 500.0,
+                width: 500.0,
               ),
             ),
           ],
